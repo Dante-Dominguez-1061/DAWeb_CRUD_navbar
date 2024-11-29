@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Proveedor</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!-- La tarjeta -->
+            <div class="card-body">
+            <form action="/editarProveedor/" method="POST">{% csrf_token %}<!-- Falta action -->
+                <div class="form-group">
+                    <input type="text" id="txtid" name="txtid" class="form-control" value="{{misproveedores.id_proveedor}}" minlength="1" maxlength="6" readonly required>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="txtnombreempresa" name="txtnombreempresa" class="form-control" value="{{misproveedores.nombre_empresa}}" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" minlength="1" maxlength="100" value="{{misproveedores.nombre}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txttelefono" name="txttelefono" class="form-control" minlength="1" maxlength="100" value="{{misproveedores.telefono}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" minlength="1" maxlength="100" value="{{misproveedores.direccion}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtemail" name="txtemail" class="form-control" minlength="1" maxlength="100" value="{{misproveedores.email}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" minlength="1" maxlength="100" value="{{misproveedores.fecha_envio}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+                </div>
+            </form>
+            </div>
+        </div><!-- La tarjeta -->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+
+
+{% endblock %}

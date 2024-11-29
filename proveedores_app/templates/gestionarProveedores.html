@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!-- La fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 xl-4"><!-- Columna izquierda -->
+
+    <h1>Insertar proveedor</h1>
+<div class="card"><!-- La tarjeta -->
+    <div class="card-body">
+    <form action="registrarProveedor/" method="POST">{% csrf_token %}<!-- Falta action -->
+        <div class="form-group">
+            <input type="text" id="txtid" name="txtid" class="form-control" placeholder="Id Proveedor" minlength="1" maxlength="6" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtnombreempresa" name="txtnombreempresa" class="form-control" placeholder="Nombre empresa" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txttelefono" name="txttelefono" class="form-control" placeholder="Telefono" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" placeholder="Direccion" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtemail" name="txtemail" class="form-control" placeholder="Email" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="date" id="txtfecha" name="txtfecha" class="form-control" placeholder="Fecha de envio" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+        </div>
+    </form>
+    </div>
+</div><!-- La tarjeta -->
+</div><!-- Columna izquierda -->
+
+<div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!-- Columna derecha -->
+    <h1>Listado de proveedores</h1>
+    <img class="w-50" src="{% static 'img/proveedores.jpg' %}" alt="Dominguez" width="100" height="200">
+    <!-- La tabla -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre empresa</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Email</th>
+            <th scope="col">Fecha de envio</th>
+            <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for m in misproveedores %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{m.id_proveedor}}
+                </td>
+                <td>
+                    {{m.nombre_empresa}}
+                </td>
+                <td>
+                    {{m.nombre}}
+                </td>
+                <td>
+                    {{m.telefono}}
+                </td>
+                <td>
+                    {{m.direccion}}
+                </td>
+                <td>
+                    {{m.email}}
+                </td>
+                <td>
+                    {{m.fecha_envio | date:'d-m-y'}}
+                </td>
+                <td>
+                    <a href="seleccionarProveedor/{{m.id_proveedor}}" class="btn btn-info">Editar</a>
+                </td><!-- Falta -->
+                <td>
+                    <a href="borrarProveedor/{{m.id_proveedor}}" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- La tabla -->
+    </div><!-- Columna derecha -->
+    </div><!-- La fila -->
+{% endblock %}
