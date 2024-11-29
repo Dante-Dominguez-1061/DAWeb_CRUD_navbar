@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Venta</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!-- La tarjeta -->
+            <div class="card-body">
+            <form action="/editarVenta/" method="POST">{% csrf_token %}<!-- Falta action -->
+                <div class="form-group">
+                    <input type="text" id="idventa" name="idventa" class="form-control" value="{{misventas.id_venta}}" minlength="1" maxlength="6" readonly required>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="idcliente" name="idcliente" class="form-control" value="{{misventas.id_cliente}}" minlength="1" maxlength="6" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="idempleado" name="idempleado" class="form-control" value="{{misventas.id_empleado}}" minlength="1" maxlength="6" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" minlength="1" maxlength="100" value="{{misventas.fecha_venta}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="numtotal" name="numtotal" class="form-control" minlength="1" maxlength="100" value="{{misventas.total}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="numimpuesto" name="numimpuesto" class="form-control" minlength="1" maxlength="100" value="{{misventas.impuesto}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtproducto" name="txtproducto" class="form-control" minlength="1" maxlength="100" value="{{misventas.producto_vendido}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Venta</button>
+                </div>
+            </form>
+            </div>
+        </div><!-- La tarjeta -->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+
+
+{% endblock %}
