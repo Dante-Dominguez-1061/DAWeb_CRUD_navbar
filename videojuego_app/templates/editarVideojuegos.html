@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Videojuego</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!-- La tarjeta -->
+            <div class="card-body">
+            <form action="/editarVideojuego/" method="POST">{% csrf_token %}<!-- Falta action -->
+                <div class="form-group">
+                    <input type="text" id="txtid" name="txtid" class="form-control" value="{{misvideojuegos.id_videojuego}}" minlength="1" maxlength="6" readonly required>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="txttiulo" name="txttitulo" class="form-control" value="{{misvideojuegos.titulo}}" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtgenero" name="txtgenero" class="form-control" minlength="1" maxlength="100" value="{{misvideojuegos.genero}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtcompañia" name="txtcompañia" class="form-control" minlength="1" maxlength="100" value="{{misvideojuegos.compañia}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="numprecio" name="numprecio" class="form-control" minlength="1" maxlength="9" value="{{misvideojuegos.precio}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" minlength="1" maxlength="100" value="{{misvideojuegos.fecha_lanzamiento}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="numstock" name="numstock" class="form-control" minlength="1" maxlength="9" value="{{misvideojuegos.stock}}" required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Videojuego</button>
+                </div>
+            </form>
+            </div>
+        </div><!-- La tarjeta -->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+
+
+{% endblock %}

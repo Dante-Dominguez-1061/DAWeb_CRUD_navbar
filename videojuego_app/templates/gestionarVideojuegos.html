@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!-- La fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 xl-4"><!-- Columna izquierda -->
+
+    <h1>Insertar videojuego</h1>
+<div class="card"><!-- La tarjeta -->
+    <div class="card-body">
+    <form action="registrarVideojuego/" method="POST">{% csrf_token %}<!-- Falta action -->
+        <div class="form-group">
+            <input type="text" id="txtid" name="txtid" class="form-control" placeholder="Id Videojuego" minlength="1" maxlength="6" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txttitulo" name="txttitulo" class="form-control" placeholder="Titulo" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtgenero" name="txtgenero" class="form-control" placeholder="Genero" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtcompañia" name="txtcompañia" class="form-control" placeholder="Compañia" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="numprecio" name="numprecio" class="form-control" placeholder="Precio" maxlength="9" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="date" id="txtfecha" name="txtfecha" class="form-control" placeholder="Fecha de lanzamiento" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="numstock" name="numstock" class="form-control" placeholder="Stock" maxlength="100" required>
+        </div>
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Videojuego</button>
+        </div>
+    </form>
+    </div>
+</div><!-- La tarjeta -->
+</div><!-- Columna izquierda -->
+
+<div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!-- Columna derecha -->
+    <h1>Listado de videojuegos</h1>
+    <img class="w-50" src="{% static 'img/inventario.jpg' %}" alt="Dominguez" width="100" height="200">
+    <br>
+    <br>
+    <!-- La tabla -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Compañia</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Fecha de lanzamiento</th>
+            <th scope="col">Stock</th>
+            <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for m in misvideojuegos %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{m.id_videojuego}}
+                </td>
+                <td>
+                    {{m.titulo}}
+                </td>
+                <td>
+                    {{m.genero}}
+                </td>
+                <td>
+                    {{m.compañia}}
+                </td>
+                <td>
+                    {{m.precio}}
+                </td>
+                <td>
+                    {{m.fecha_lanzamiento | date:'d-m-y'}}
+                </td>
+                <td>
+                    {{m.stock}}
+                </td>
+                <td>
+                    <a href="seleccionarVideojuego/{{m.id_videojuego}}" class="btn btn-info">Editar</a>
+                </td><!-- Falta -->
+                <td>
+                    <a href="borrarVideojuego/{{m.id_videojuego}}" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- La tabla -->
+    </div><!-- Columna derecha -->
+    </div><!-- La fila -->
+{% endblock %}
